@@ -3,6 +3,7 @@ import {Select, Typography, Row, Col, Avatar, Card} from 'antd';
 import moment from 'moment';
 
 import { useGetCryptoNewsQuery } from './services/cryptoNewsApi';
+import SmoothLoader from './Loader';
 
 const {Text, Title} = Typography;
 const {Option} = Select;
@@ -11,7 +12,7 @@ const {Option} = Select;
 const News = () => {
   const {data,isFetching} = useGetCryptoNewsQuery({newsCategory:'cryptocurrency', count:10});
   
-  if (isFetching) return 'Loading...';
+  if (isFetching) return <SmoothLoader/>;
   console.log('news data',data);
   
   return (

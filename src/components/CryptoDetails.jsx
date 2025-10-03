@@ -6,6 +6,7 @@ import { Col, Row, Typography, Select, } from "antd"
 import { MoneyCollectFilled, DollarCircleOutlined,NumberOutlined, MoneyCollectOutlined, TrophyOutlined, CheckOutlined, ThunderboltOutlined, FundOutlined, ExclamationCircleOutlined, StopOutlined  } from '@ant-design/icons'
 import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from './services/cryptoApi'
 import LineChart from './LineChart'
+import SmoothLoader from './Loader'
 
 
 
@@ -18,7 +19,7 @@ const CryptoDetails = () => {
   const [timePeriod, setTimePeriod] = useState('7d')
   
   const {data:coinHistory} = useGetCryptoHistoryQuery({coinId,timePeriod: timePeriod})
-  if (isFetching) return 'Loading...'
+  if (isFetching) return (<SmoothLoader/>)
   console.log(data)
   const cryptoDetails = data?.data?.coin
   const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];

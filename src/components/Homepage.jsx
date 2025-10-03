@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useGetCryptoQuery } from './services/cryptoApi'
 import millify from 'millify';
 import {Cryptocurrencies, News} from './index'
+import SmoothLoader from './Loader';
 
 const {Title} = Typography
 
@@ -14,10 +15,8 @@ const Homepage = () => {
     const {data, isFetching} = useGetCryptoQuery(10);
     const stats = data?.data?.stats ?? {}
 
-    if (isFetching) return 
-    <div>
-      <h2>Loading...</h2>
-    </div>
+    if (isFetching) return (<SmoothLoader />)
+   
     // console.log(data)
   return (
     <>
